@@ -3,21 +3,14 @@ package cat.montoya.llantia;
 import java.io.IOException;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.SurfaceHolder.Callback;
 
 public class MainActivity extends Activity implements SurfaceHolder.Callback {
 	private Camera _camera;
@@ -73,7 +66,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
 	}
 
 	private void startFlash() throws IOException {
-		
+
 		Camera.Parameters param = _camera.getParameters();
 		param.setFlashMode(Parameters.FLASH_MODE_TORCH);
 		_camera.setParameters(param);
@@ -88,7 +81,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
 		param.setFlashMode(Parameters.FLASH_MODE_OFF);
 		_camera.setParameters(param);
 		_camera.startPreview();
-		_camera.stopPreview();		
+		_camera.stopPreview();
 	}
 
 	@Override
@@ -102,14 +95,14 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback {
 		super.onStart();
 		onStartOnResume();
 	}
-	
+
 	@Override
-	protected void onResume() {		
+	protected void onResume() {
 		super.onResume();
 		onStartOnResume();
 	}
-	
-	private void onStartOnResume(){
+
+	private void onStartOnResume() {
 		if (_camera == null) {
 			_camera = Camera.open();
 		} else {
